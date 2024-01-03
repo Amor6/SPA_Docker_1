@@ -1,13 +1,13 @@
-FROM python:3
+FROM python:3.11
 
-WORKDIR /homework_27_1
+WORKDIR /code
 
-COPY requirements.txt /homework_27_1/
+COPY requirements.txt /code/requirements.txt
 
-RUN python.exe -m pip install --upgrade pip
+RUN pip install -r /code/requirements.txt
 
-RUN pip install -r requirements.txt --no-cache-dir
+ENV PIP_ROOT_USER_ACTION=ignore
 
-COPY ../../Desktop/dock .
+COPY . .
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver"]
