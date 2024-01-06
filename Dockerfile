@@ -1,14 +1,17 @@
+# Используем базовый образ Python
 FROM python:3.11
 
-WORKDIR /cod
+# Устанавливаем рабочую директорию в контейнере
+WORKDIR /app
 
-COPY requirements.txt /code/requirements.txt
+# Копируем зависимости в контейнер
+COPY requirements.txt .
 
-RUN pip install -r /code/requirements.txt
+# Устанавливаем зависимости
+RUN pip install -r requirements.txt
 
-ENV PIP_ROOT_USER_ACTION=ignore
-
+# Копируем код приложения в контейнер
 COPY . .
 
+# Команда для запуска приложения при старте контейнера
 CMD ["python", "manage.py", "runserver"]
-
